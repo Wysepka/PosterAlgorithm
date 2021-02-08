@@ -26,11 +26,9 @@ namespace Plakaty_Zadanie_Testowe
 
             int postersCalculatedV1 = blockAssigment.CalculatePostersV1();
             //int postersCalculatedV2 = blockAssigment.CalculatePostersV2NestedLists();
-            int postersCalculatedV2Simple = blockAssigment.CalculatePostersV2SimpleLists();
 
             Console.WriteLine("Posters V1: " + postersCalculatedV1);
             //Console.WriteLine("Posters V2: " + postersCalculatedV2);
-            Console.WriteLine("Posters V2, Simple: {0}", postersCalculatedV2Simple);
 
             blockAssigment.WriteResultToOutFile(postersCalculatedV1, Path.Combine(writeFileDestination + "resultV1.out"));
             //blockAssigment.WriteResultToOutFile(postersCalculatedV2,Path.Combine(writeFileDestination+"resultV2.out"));
