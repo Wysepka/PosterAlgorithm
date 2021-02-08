@@ -1,6 +1,6 @@
 # PosterAlgorithm
 Poster Algorithm from XV IT Olimpics, "Plakatowanie" algorithm, with own implementation.
-[Link to Code](../blob/main/Plakaty_Zadanie_Testowe/Plakaty_Zadanie_Testowe/Program.cs)
+[Link to Code](/Plakaty_Zadanie_Testowe/Plakaty_Zadanie_Testowe/Program.cs)
 
 Two different approaches has been implemented:
 
