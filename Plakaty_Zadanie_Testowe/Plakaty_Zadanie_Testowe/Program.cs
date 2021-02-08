@@ -4,6 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 
+//============================================//
+/// <summary>
+/// Github Link: https://github.com/Wysepka/PosterAlgorithm
+/// </summary>
+//============================================//
 namespace Plakaty_Zadanie_Testowe
 {
     class Program
