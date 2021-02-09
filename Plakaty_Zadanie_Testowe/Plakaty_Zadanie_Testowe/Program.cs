@@ -11,10 +11,12 @@ using System.Text.RegularExpressions;
 //============================================//
 namespace Plakaty_Zadanie_Testowe
 {
+    #region Main Program
     class Program
     {
+
         //Static file destination
-        static string fileDestination = @"C:\Users\Admin\Desktop\Zadanie_Atinea\etap1\pla\in\pla2b.in";
+        static string fileDestination = @"C:\Users\Admin\Desktop\Zadanie_Atinea\etap1\pla\in\pla8b.in";
         //Write File Destination
         static string writeFileDestination = @"C:\Users\Admin\Desktop\Zadanie_Atinea\";
 
@@ -23,26 +25,43 @@ namespace Plakaty_Zadanie_Testowe
         {
             BlockAssigment blockAssigment = new BlockAssigment();
 
-            string textInput = System.IO.File.ReadAllText(fileDestination);
+            ReadInputData(blockAssigment);
 
-            //Not is use, explanation below
-            //blockAssigment.WriteStringToBlocksArray(textInput);
-            blockAssigment.ReadingFileToBlocksArray(fileDestination);
+            int postersCalculatedV1 = AlgorithmCalculation(blockAssigment);
 
-            int postersCalculatedV1 = blockAssigment.CalculatePostersV1();
-            //int postersCalculatedV2 = blockAssigment.CalculatePostersV2NestedLists();
+            PrintAlgorithmResult(postersCalculatedV1);
 
-            Console.WriteLine("Posters V1: " + postersCalculatedV1);
-            //Console.WriteLine("Posters V2: " + postersCalculatedV2);
+            WriteResultToFile(blockAssigment, postersCalculatedV1);
+        }
 
+        private static void ReadInputData(BlockAssigment blockAssigment)
+        {
+            //Input by User
+            blockAssigment.ReadBlocksFromConsole();
+
+            //Input by File
+            //blockAssigment.ReadingFileToBlocksArray(fileDestination);
+        }
+
+        private static int AlgorithmCalculation(BlockAssigment blockAssigment)
+        {
+            return blockAssigment.CalculatePostersV1();
+            //return blockAssigment.CalculatePostersV2NestedLists();
+        }
+
+        private static void PrintAlgorithmResult(int result)
+        {
+            Console.WriteLine(result);
+        }
+
+        private static void WriteResultToFile(BlockAssigment blockAssigment, int postersCalculatedV1)
+        {
             blockAssigment.WriteResultToOutFile(postersCalculatedV1, Path.Combine(writeFileDestination + "resultV1.out"));
             //blockAssigment.WriteResultToOutFile(postersCalculatedV2,Path.Combine(writeFileDestination+"resultV2.out"));
         }
-
-
-
     }
 
+    #endregion
 
     //Block Assigment class from which all calculation takes place
     //BlockAssigment gathers all Methods and Data
@@ -116,7 +135,7 @@ namespace Plakaty_Zadanie_Testowe
                 while ((blocksData = sr.ReadLine()) != null)
                 {
                     //NewMethod(blocksData, blocksIterator);
-
+                    /*
                     List<char> dimensionsChar = new List<char>();
                     List<int> dimensions = new List<int>();
                     for (int i = 0; i < blocksData.Length; i++)
@@ -135,17 +154,66 @@ namespace Plakaty_Zadanie_Testowe
                     string number2String = new string(dimensionsChar.ToArray());
                     int number2 = int.Parse(number2String);
                     dimensions.Add(number2);
+                    */
+
+                    int blockWidth, blockHeight;
+
+                    AssignBlocksParamsFromStringInput(blocksData,out blockWidth,out blockHeight);
 
                     //Assigning block Array
-                    blocks[blocksIterator] = new Block(dimensions[0], dimensions[1]);
-                    blocksHeight.Add(dimensions[1]);
+                    blocks[blocksIterator] = new Block(blockWidth, blockHeight);
+                    blocksHeight.Add(blockHeight);
 
                     //Console.WriteLine("Block Iterator: {0} , W:{1} , H:{2} " , blocksIterator , dimensions[0] , dimensions[1]);
 
                     blocksIterator++;
                 }
-                Console.WriteLine("Blocks Array Assigned Count:{0}", blocksIterator);
+                //Console.WriteLine("Blocks Array Assigned Count:{0}", blocksIterator);
             }
+        }
+
+        //Reading Input from Console, and assigning 
+        //BlocksHeight list with heights applied by user
+        public void ReadBlocksFromConsole()
+        {
+            int numberOfBlocks = int.Parse(Console.ReadLine());
+            blocksHeight = new List<int>();
+
+            for (int i = 0; i < numberOfBlocks; i++)
+            {
+                string readLine = Console.ReadLine();
+                int blockWidth = 0;
+                int blockHeight = 0;
+
+                AssignBlocksParamsFromStringInput(readLine,out blockWidth,out blockHeight);
+
+                blocksHeight.Add(blockHeight);
+            }
+        }
+
+        //Assigning Block Width,Height from string input
+        //Seperating int(Chars) from whitespaces
+        private void AssignBlocksParamsFromStringInput(string input, out int width, out int height)
+        {
+            List<char> dimensionsChar = new List<char>();
+            width = 0;
+            height = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                //When Whitespace is met, Char[] is Parsed to Int
+                if (char.IsWhiteSpace(input[i]))
+                {
+                    string numberString = new string(dimensionsChar.ToArray());
+                    int number = int.Parse(numberString);
+                    width = number;
+                    dimensionsChar = new List<char>();
+                }
+                //Else, char numbers are added
+                else dimensionsChar.Add(input[i]);
+            }
+            string number2String = new string(dimensionsChar.ToArray());
+            int number2 = int.Parse(number2String);
+            height = number2;
         }
 
         #endregion
@@ -225,7 +293,7 @@ namespace Plakaty_Zadanie_Testowe
 
                 blocksList = SortNestedList(blocksList);
                 //PrintNestedIntList(blocksList);
-                Console.WriteLine("Progress 0/100 | {0}% |" , (float)numbersCount * 100f/(float)blocks.Length);
+                //Console.WriteLine("Progress 0/100 | {0}% |" , (float)numbersCount * 100f/(float)blocks.Length);
             }
             return postersUsed;
         }
