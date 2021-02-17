@@ -16,9 +16,9 @@ namespace Plakaty_Zadanie_Testowe
     {
 
         //Static file destination
-        static string fileDestination = @"C:\Users\Admin\Desktop\Zadanie_Atinea\etap1\pla\in\pla8b.in";
+        static string fileDestination = @"C:\Users\Admin\Desktop\Zadanie_\etap1\pla\in\pla8b.in";
         //Write File Destination
-        static string writeFileDestination = @"C:\Users\Admin\Desktop\Zadanie_Atinea\";
+        static string writeFileDestination = @"C:\Users\Admin\Desktop\Zadanie_\";
 
         //Main program method
         static void Main(string[] args)
@@ -134,28 +134,6 @@ namespace Plakaty_Zadanie_Testowe
                 //Reading one line at a time
                 while ((blocksData = sr.ReadLine()) != null)
                 {
-                    //NewMethod(blocksData, blocksIterator);
-                    /*
-                    List<char> dimensionsChar = new List<char>();
-                    List<int> dimensions = new List<int>();
-                    for (int i = 0; i < blocksData.Length; i++)
-                    {
-                        //When Whitespace is met, Char[] is Parsed to Int
-                        if (char.IsWhiteSpace(blocksData[i]))
-                        {
-                            string numberString = new string(dimensionsChar.ToArray());
-                            int number = int.Parse(numberString);
-                            dimensions.Add(number);
-                            dimensionsChar = new List<char>();
-                        }
-                        //Else, char numbers are added
-                        else dimensionsChar.Add(blocksData[i]);
-                    }
-                    string number2String = new string(dimensionsChar.ToArray());
-                    int number2 = int.Parse(number2String);
-                    dimensions.Add(number2);
-                    */
-
                     int blockWidth, blockHeight;
 
                     AssignBlocksParamsFromStringInput(blocksData,out blockWidth,out blockHeight);
