@@ -16,9 +16,9 @@ namespace Plakaty_Zadanie_Testowe
     {
 
         //Static file destination
-        static string fileDestination = @"C:\Users\Admin\Desktop\Zadanie_\etap1\pla\in\pla8b.in";
+        static string fileDestination = @"";
         //Write File Destination
-        static string writeFileDestination = @"C:\Users\Admin\Desktop\Zadanie_\";
+        static string writeFileDestination = @"";
 
         //Main program method
         static void Main(string[] args)
